@@ -96,8 +96,7 @@ public class MyInvokerController {
         System.out.println(" IRule\t"
                 + zoneAwareLoadBalancer2.getRule().getClass().getName() + "\n");
 
-        System.out.println(" IPing\t"
-                + zoneAwareLoadBalancer2.getPing().getClass().getName() + "\n");
+        System.out.println(" IPing\t" + zoneAwareLoadBalancer2.getPing().getClass().getName() + "\n");
 
         System.out.println(" ServerLis\t"
                 + zoneAwareLoadBalancer2.getServerListImpl().getClass()
