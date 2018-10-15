@@ -1,0 +1,23 @@
+eureka:
+  instance:
+    lease-renewal-interval-in-seconds: 10  # 心跳设置（单位：s）
+    hostname: localhost
+    metadata-map:
+      company-name: aitemi  #公司名称
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:8761/eureka/ # ,http://localhost:8762/eureka/  # 注册到两个服务端
+#user-service:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.devin.eruakeclient.rule.MyRule # Ribbon，指定规则
+server:
+  port: 9999
+  application:
+    name: eruake-client
+spring:
+  application:
+    name: eruake-client
+# 日志配置
+logging:
+  level:
+    com.netflix: INFO

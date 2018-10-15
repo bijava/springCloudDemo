@@ -1,0 +1,20 @@
+eureka: # 作为服务提供者
+  instance:
+    hostname: localhost
+    lease-renewal-interval-in-seconds: 10  # 心跳设置（单位：s）
+    lease-expiration-duration-in-seconds: 30  # 设置如果30秒内没有向服务器发送心跳请求，则被清除
+  client:
+    serviceUrl:
+      defaultZone:  http://localhost:8761/eureka/,http://localhost:8762/eureka/ # 只向8888端口服务器注册
+#server:
+#  port: 8080
+#  port: 8081
+endpoints:
+  sensitive: false # 防止敏感端口不能被访问，我们将服务提供者的敏感端口的操作关闭。
+spring:
+  application:
+    name: user-service
+# 日志配置
+logging:
+  level:
+    com.netflix: DEBUG

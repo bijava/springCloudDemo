@@ -1,0 +1,7 @@
+user-service:
+  ribbon:
+    listOfServers:  localhost:8080,localhost:8081 # 服务列表
+# 日志配置
+logging:
+  level:
+    com.netflix: INFO
