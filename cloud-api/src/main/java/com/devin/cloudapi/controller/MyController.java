@@ -1,11 +1,9 @@
 package com.devin.cloudapi.controller;
 
+import com.devin.cloudapi.entity.Person;
 import com.devin.cloudapi.entity.Student;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -20,6 +18,21 @@ public class MyController {
             produces = MediaType.APPLICATION_JSON_VALUE)
     public void setOb(@PathVariable boolean can){
         this.canVisitOb = can;
+    }
+
+    @PostMapping("/person/create")
+    @ResponseBody
+    public String createPerson(@RequestBody Person person) {
+        System.out.println(person.getName() + "---" + person.getAge());
+        return "创建成功：" + person.getId();
+    }
+
+    @RequestMapping(value = "/person/createXML", method = RequestMethod.POST,
+            consumes = MediaType.APPLICATION_XML_VALUE,
+            produces = MediaType.APPLICATION_XML_VALUE)
+    public String createXMLPerson(@RequestBody Person person) {
+        System.out.println(person.getName() + "-" + person.getId());
+        return "<result><message>success</message></result>";
     }
 
     @RequestMapping(value = "/info", method = RequestMethod.GET,

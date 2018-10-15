@@ -1,0 +1,9 @@
+[HelloClient#sayHello] ---> GET http://localhost:8080/hello HTTP/1.1
+[HelloClient#sayHello] ---> END HTTP (0-byte body)
+[HelloClient#sayHello] <--- HTTP/1.1 200 (110ms)
+[HelloClient#sayHello] content-type: application/json;charset=UTF-8
+[HelloClient#sayHello] date: Mon, 15 Oct 2018 17:29:08 GMT
+[HelloClient#sayHello] transfer-encoding: chunked
+[HelloClient#sayHello] 
+[HelloClient#sayHello] {"sex":"男","name":"devin","age":"28"}
+[HelloClient#sayHello] <--- END HTTP (39-byte body)
