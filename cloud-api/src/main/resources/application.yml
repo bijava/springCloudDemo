@@ -6,15 +6,18 @@ eureka: # 作为服务提供者
   client:
     serviceUrl:
       defaultZone:  http://localhost:8761/eureka/ # ,http://localhost:8762/eureka/ # 只向8888端口服务器注册
-#server:
-#  port: 8080
+server:
+  port: 8080
 #  port: 8081
+# 可访问全部敏感端口
+# /evn 服务的全部环境变量信息
+# /health 当前服务状态
 endpoints:
-  sensitive: false # 防止敏感端口不能被访问，我们将服务提供者的敏感端口的操作关闭。
+  sensitive: false
 spring:
   application:
     name: user-service
 # 日志配置
 logging:
   level:
-    com.netflix: DEBUG
+    com.netflix: INFO # DEBUG

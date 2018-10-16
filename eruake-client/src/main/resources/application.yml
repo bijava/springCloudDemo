@@ -10,10 +10,31 @@ eureka:
 #user-service:
 #  ribbon:
 #    NFLoadBalancerRuleClassName: com.devin.eruakeclient.rule.MyRule # Ribbon，指定规则
+# 可访问全部敏感端口
+# /evn 服务的全部环境变量信息
+# /health 当前服务状态
+endpoints:
+  sensitive: false
 server:
-  port: 9999
+  port: 9991
   application:
     name: eruake-client
+##开启feign开关
+feign:
+  hystrix:
+    enabled: true
+hystrix:
+  command:
+    ##全局方法使用default
+    HelloClient#toHello():
+      execution:
+        isolation:
+          thread:
+          ##超时时间
+            timeoutInMilliseconds: 500
+      circuitBreaker:
+      ##每秒3次请求
+        requestVolumeThreshold: 3
 spring:
   application:
     name: eruake-client

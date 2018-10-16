@@ -2,6 +2,7 @@ package com.devin.cloudapi.controller;
 
 import com.devin.cloudapi.entity.Person;
 import com.devin.cloudapi.entity.Student;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,6 +29,17 @@ public class MyController {
         return "创建成功：" + person.getId();
     }
 
+    @HystrixCommand
+    @RequestMapping(value = "/person/{personId}", method = RequestMethod.GET,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Person findPerson(@PathVariable("personId")Integer personId, HttpServletRequest request) {
+        Person person = new Person();
+        person.setId(personId);
+        person.setName("莉香" + request.getRequestURL().toString());
+        person.setAge(19);
+        return person;
+    }
+
     @RequestMapping(value = "/person/createXML", method = RequestMethod.POST,
             consumes = MediaType.APPLICATION_XML_VALUE,
             produces = MediaType.APPLICATION_XML_VALUE)
@@ -36,6 +48,7 @@ public class MyController {
         return "<result><message>success</message></result>";
     }
 
+    @HystrixCommand
     @RequestMapping(value = "/info", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Student findStudent(){
@@ -47,6 +60,7 @@ public class MyController {
         return student;
     }
 
+    @HystrixCommand
     @RequestMapping(value = "/student/{studentNo}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public Student findStudent(@PathVariable("studentNo")Integer studentNo, HttpServletRequest request){
@@ -79,5 +93,19 @@ public class MyController {
         // 模拟需要处理10秒
         Thread.sleep(10000);
         return "Error Hello world";
+    }
+
+    /**
+     * 测试断路器
+     * @return
+     * @throws InterruptedException
+     */
+    @GetMapping("/tmhello")
+    @ResponseBody
+    public String timeOutHello() throws InterruptedException {
+        // 此方法处理最少需要0.1s
+        Thread.sleep(100);
+        System.out.println("我处理了数据>>>>>>>>>>");
+        return "TimeOut Hello";
     }
 }
