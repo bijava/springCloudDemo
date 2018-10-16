@@ -51,20 +51,6 @@ public class DemoApplication{
 				"server.port=" + port).run(args);
 	}
 
-	@RequestMapping("hi")
-	public String hi() {
-		return "hi spring boot";
-	}
-
-	@RequestMapping(value = "hello", produces = MediaType.APPLICATION_JSON_VALUE)
-	public HashMap helloWord() {
-		HashMap map = new HashMap();
-		map.put("name","devin");
-		map.put("age","28");
-		map.put("sex","男");
-		return map;
-	}
-
 	@GetMapping(value = "student_json", produces = MediaType.APPLICATION_JSON_VALUE)
 	public List getStudentJson() {
 		List<Student> students = new ArrayList<>();

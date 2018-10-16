@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
 
 @RestController
 public class MyController {
@@ -56,5 +57,27 @@ public class MyController {
         student.setCreateTime(new Date());
         student.setNo(studentNo);
         return student;
+    }
+
+    @RequestMapping("hi")
+    public String hi() {
+        return "hi spring boot";
+    }
+
+    @RequestMapping(value = "hello", produces = MediaType.APPLICATION_JSON_VALUE)
+    public HashMap helloWord() {
+        HashMap map = new HashMap();
+        map.put("name","devin");
+        map.put("age","28");
+        map.put("sex","男");
+        return map;
+    }
+
+    @GetMapping("/errorHello")
+    public String erroeHello(HttpServletRequest httpServletRequest)
+            throws InterruptedException {
+        // 模拟需要处理10秒
+        Thread.sleep(10000);
+        return "Error Hello world";
     }
 }
