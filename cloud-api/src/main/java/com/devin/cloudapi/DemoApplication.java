@@ -2,12 +2,15 @@ package com.devin.cloudapi;
 
 import com.alibaba.fastjson.annotation.JSONField;
 import com.devin.cloudapi.entity.Student;
+import com.devin.cloudapi.server.ReadMessageInterface;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixProperty;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,6 +25,8 @@ import java.util.List;
 @RestController
 // 打开断路器
 @EnableCircuitBreaker
+// 开启绑定
+@EnableBinding(ReadMessageInterface.class)
 public class DemoApplication{
 
 //	private static Logger logger = Logger.getLogger(String.valueOf(DemoApplication.class));
@@ -45,6 +50,14 @@ public class DemoApplication{
 //		HttpMessageConverter<?> converter = fastJsonHttpMessageConverter;
 //		return new HttpMessageConverters(converter);
 //	}
+
+	/**
+	 * 用于监听接收的消息
+	 */
+	@StreamListener("myInput")
+	public void onListen(byte[] msg) {
+		System.out.println("接收到的消息：" + new String(msg));
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(DemoApplication.class, args);

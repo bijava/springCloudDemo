@@ -59,6 +59,12 @@
 			<version>2.0.1.RELEASE</version>
 		</dependency>
 
+		<!-- 生产者/RabbitMQ -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+		</dependency>
+
         <!-- Feign -->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

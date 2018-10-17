@@ -38,6 +38,12 @@ hystrix:
 spring:
   application:
     name: eruake-client
+# 均使用默认的配置，所以可以无需配置，需要修改时，再配置
+#rabbitmq:
+#  host: localhost
+#  port: 5762
+#  username: guest
+#  password: guest
 # 日志配置
 logging:
   level:

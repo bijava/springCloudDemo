@@ -58,6 +58,12 @@
 			<version>2.9.0</version>
 		</dependency>
 
+		<!-- 消费者/RabbitMQ(消费/生产都是引入这个依赖) -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-stream-rabbit</artifactId>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
