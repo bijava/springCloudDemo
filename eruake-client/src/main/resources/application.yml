@@ -16,7 +16,7 @@ eureka:
 endpoints:
   sensitive: false
 server:
-  port: 9991
+  port: 9090
   application:
     name: eruake-client
 ##开启feign开关

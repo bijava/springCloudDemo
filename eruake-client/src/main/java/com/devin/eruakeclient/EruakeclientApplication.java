@@ -5,15 +5,17 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
+@EnableEurekaClient
 // 打开断路器
 @EnableCircuitBreaker
 // 扫描
 @ServletComponentScan
-//打开Feign注解
+//开启Feign
 @EnableFeignClients
 public class EruakeclientApplication {
 

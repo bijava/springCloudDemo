@@ -1,0 +1,25 @@
+server:
+  port: 8085
+zuul:
+  routes:
+    myServer:
+      path: /myServer/**
+      serviceId: eruake-client
+    testForward:
+      path: /fo/**
+      url: forward:/receive
+    v:
+      path: /h/**
+      url: http://localhost:8080/person/
+    eruake-client:
+      path: /server/**
+ribbon:
+  okhttp:
+    enable: true
+spring:
+  application:
+    name: zuul-router
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
