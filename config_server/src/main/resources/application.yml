@@ -1,0 +1,31 @@
+server:
+  port: 8888
+  application:
+    name: config-server
+devin:
+  metadata-map:
+    security-pwd: devinpwd
+management:
+  security:
+    enabled: false
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: subversion
+  cloud:
+    config:
+      server:
+        svn:
+          uri: https://DESKTOP-1BQEN4L:8443/svn/my-config/
+          username: devin
+          password: devinpwd
+        default-label: devin
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

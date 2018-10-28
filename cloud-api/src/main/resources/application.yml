@@ -5,7 +5,7 @@ eureka: # 作为服务提供者
     lease-expiration-duration-in-seconds: 30  # 设置如果30秒内没有向服务器发送心跳请求，则被清除
   client:
     serviceUrl:
-      defaultZone:  http://localhost:8761/eureka/ # ,http://localhost:8762/eureka/ # 只向8888端口服务器注册
+      defaultZone:  http://localhost:8761/eureka/,http://localhost:8762/eureka/ # 只向8888端口服务器注册
 server:
   port: 8080
 #  port: 8081
@@ -14,9 +14,26 @@ server:
 # /health 当前服务状态
 endpoints:
   sensitive: false
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh
 spring:
   application:
     name: user-service
+  cloud:
+    config:
+#      url: http://localhost:8888
+      ## 读取的文件是 user-service-dev.yml
+#      profile: dev
+      failFast: true # 配置中心没有正常运行，不能启动本服务默认（false）
+      username: user # 安全认证使用
+      password: devinpwd # 安全认证使用
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
 # 日志配置
 logging:
   level:

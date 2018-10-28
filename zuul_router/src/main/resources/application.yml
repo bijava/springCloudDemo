@@ -18,7 +18,18 @@ ribbon:
     enable: true
 spring:
   application:
-    name: zuul-router
+    name: config-zuul
+  cloud:
+    config:
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
+management:
+  endpoints:
+    web:
+      exposure:
+        include: bus-refresh
 eureka:
   client:
     serviceUrl:

@@ -6,15 +6,25 @@ eureka:
       company-name: aitemi  #公司名称
   client:
     serviceUrl:
-      defaultZone:  http://localhost:8761/eureka/ # ,http://localhost:8762/eureka/  # 注册到两个服务端
+      defaultZone:  http://localhost:8761/eureka/,http://localhost:8762/eureka/  # 注册到两个服务端
 #user-service:
 #  ribbon:
 #    NFLoadBalancerRuleClassName: com.devin.eruakeclient.rule.MyRule # Ribbon，指定规则
 # 可访问全部敏感端口
 # /evn 服务的全部环境变量信息
 # /health 当前服务状态
-endpoints:
-  sensitive: false
+#endpoints:
+#  sensitive: false
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: bus-refresh
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh
 server:
   port: 9090
   application:
@@ -36,8 +46,21 @@ hystrix:
       ##每秒3次请求
         requestVolumeThreshold: 3
 spring:
+# 配置了spring.application.name，和cloud.config.profile，则读取atm-config-client-dev.yml
   application:
     name: eruake-client
+  cloud:
+    config:
+#      url: http://localhost:8888
+      ## 读取的文件是 eruake-client-dev.yml
+#      profile: dev
+      failFast: true # 配置中心没有正常运行，不能启动本服务默认（false）
+      username: user # 安全认证使用
+      password: devinpwd # 安全认证使用
+      discovery:
+        enabled: true
+        service-id: config-server
+      profile: dev
 # 均使用默认的配置，所以可以无需配置，需要修改时，再配置
 #rabbitmq:
 #  host: localhost

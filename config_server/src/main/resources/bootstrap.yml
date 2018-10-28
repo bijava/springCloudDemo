@@ -1,0 +1,11 @@
+encrypt:
+  key: devin
+  keyStore:
+    location: classpath:/devin.keystore
+    password: devinpwd
+    alias: devin
+    secret: devinpwd
+#security:
+#  user:
+#    name: devin
+#    password: 9a49604b-ab6d-41eb-9996-4b970a31c1dd
