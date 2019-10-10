@@ -62,7 +62,7 @@ public class RestTemplateFilter extends ZuulFilter {
         String result = restTemplate.getForObject(url, String.class);
 
         // 设置路由状态，表示已经进行路由
-        // ctx.set("zuulRestTemplateFilter", true); // 标识这个路由已经处理了
+         ctx.set("zuulRestTemplateFilter", true); // 标识这个路由已经处理了
         // 将结果设置进请求上下文中
         ctx.setResponseBody(result);
 

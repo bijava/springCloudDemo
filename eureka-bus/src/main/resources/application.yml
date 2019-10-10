@@ -4,10 +4,10 @@ spring:
   application:
     name: eureka-bus
   rabbitmq:
-    host: localhost
+    host: 192.168.1.5
     port: 5672
-    username: guest
-    password: guest
+    username: devin
+    password: devinpwd163
 management:
   endpoints:
     web:

@@ -1,5 +1,6 @@
 package com.devin.zuulrouter.filter;
 
+import com.netflix.zuul.context.RequestContext;
 import org.springframework.cloud.netflix.zuul.filters.support.FilterConstants;
 
 import com.netflix.zuul.ZuulFilter;
@@ -24,8 +25,15 @@ public class MyFilter extends ZuulFilter {
         return true;// 为了测试，我们将其设置为总是执行
     }
 
+    /**
+     * 进入过滤器处理
+     * @return
+     */
     public Object run() {
         System.out.println("Come into MyFilter...");
+        RequestContext ctx = RequestContext.getCurrentContext();
+        // 设置路由状态，表示已经进行路由
+        ctx.set("zuulMyFilter", true); // 标识这个路由已经处理了
         return null;
     }
 

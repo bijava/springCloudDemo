@@ -1,16 +1,18 @@
 server:
-  port: 8085
+  port: 8088
 zuul:
   routes:
     myServer:
       path: /myServer/**
       serviceId: eruake-client
+      sensitiveHeaders: Cookie,Set-Cookie,Authorization
+      ignoredHeaders: Header2
     testForward:
       path: /fo/**
       url: forward:/receive
     v:
       path: /h/**
-      url: http://localhost:8080/person/
+      url: http://localhost:8082/person/
     eruake-client:
       path: /server/**
 ribbon:
@@ -19,6 +21,11 @@ ribbon:
 spring:
   application:
     name: config-zuul
+  rabbitmq:
+    host: 192.168.1.5
+    port: 5672
+    username: devin
+    password: devinpwd163
   cloud:
     config:
       discovery:

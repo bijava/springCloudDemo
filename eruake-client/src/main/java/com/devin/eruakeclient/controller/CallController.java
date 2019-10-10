@@ -2,6 +2,7 @@ package com.devin.eruakeclient.controller;
 
 import com.devin.eruakeclient.entity.Person;
 import com.devin.eruakeclient.service.CallService;
+import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.RequestMapping;

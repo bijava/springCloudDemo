@@ -16,7 +16,7 @@
 #    fetchRegistry:  false
 #    serviceUrl:
 #      defaultZone:  http://${eureka.instance.hostname}:8889/eureka/
-##      defaultZone:  http://${eureka.instance.hostname}:8888/eureka/
+#      defaultZone:  http://${eureka.instance.hostname}:8888/eureka/
 server:
   port: 8761
 spring:
@@ -26,9 +26,14 @@ spring:
 eureka:
   instance:
     hostname: slave1
-client:
-  serviceUrl:
-    defaultZone: http://slave2:8762/eureka/
+  server:
+    enable-self-preservation: false # 关闭Eureka的自我保护模式
+    eviction-interval-timer-in-ms: 5000 # 将定时器开始时间定为每5秒（单位：毫秒）
+  client:
+    registerWithEureka: false
+    fetchRegistry:  false
+    serviceUrl:
+      defaultZone: http://127.0.0.1:8762/eureka/
 ---
 server:
   port: 8762
@@ -39,6 +44,11 @@ spring:
 eureka:
   instance:
     hostname: slave2
+  server:
+    enable-self-preservation: false # 关闭Eureka的自我保护模式
+    eviction-interval-timer-in-ms: 5000 # 将定时器开始时间定为每5秒（单位：毫秒）
   client:
+    registerWithEureka: false
+    fetchRegistry:  false
     serviceUrl:
-      defaultZone: http://slave1:8761/eureka/
+      defaultZone: http://127.0.0.1:8761/eureka/

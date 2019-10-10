@@ -10,7 +10,7 @@ public class HystrixVisitApp {
 
 	public static void main(String[] args) {
 		new SpringApplicationBuilder(HystrixVisitApp.class).properties(
-				"server.port=8082").run(args);
+				"server.port=8083").run(args);
 	}
 
 }

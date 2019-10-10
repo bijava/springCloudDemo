@@ -7,16 +7,24 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="cloud-api" />
+        <module name="cloud_hystrix" />
+        <module name="config_server" />
         <module name="eruake-client" />
         <module name="eruake-server" />
+        <module name="eureka-bus" />
+        <module name="eureka_cxf_client" />
+        <module name="feign_client" />
+        <module name="hystrix-actuator" />
+        <module name="load_banlanced" />
+        <module name="rabbitMq_producer" />
         <module name="ribbon-service" />
         <module name="ribbon_client" />
-        <module name="springCloudDemo" />
+        <module name="spring_context" />
+        <module name="zuul_router" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="eruake-wedapi" target="1.8" />
-      <module name="ribbonclient" target="1.8" />
-    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_STRING" value="-encoding utf-8" />
   </component>
 </project>

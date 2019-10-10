@@ -15,7 +15,7 @@ public interface StudentClient {
         String name;
         //年龄
         int age;
-        //住址
+        //住址!
         String address;
         //创建时间
         Date createTime;

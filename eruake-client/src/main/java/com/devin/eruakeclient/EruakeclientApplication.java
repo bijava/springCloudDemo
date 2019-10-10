@@ -20,7 +20,7 @@ import org.springframework.cloud.stream.annotation.EnableBinding;
 //开启Feign
 @EnableFeignClients
 @EnableBinding(SendMessageInterface.class)//开启绑定
-@RefreshScope
+//@RefreshScope
 public class EruakeclientApplication {
 
 	public static void main(String[] args) {

@@ -27,7 +27,6 @@ public class MyRESTClient {
             try {
 
                 HttpResponse response = client.executeWithLoadBalancer(request);
-
 //                String result = response.getEntity(String.class);
 
                 System.out.println(response.getRequestedURI());
